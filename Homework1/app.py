@@ -39,11 +39,10 @@ def nextquestion():
 
 
 #class challenge routes
-@app.route('/square/<int:number>')
-def square(number):
-    numbersquare = number * number
-    request.args 
-    return str(numbersquare)
+@app.route('/square')
+def square():
+    value = int(request.args.get('number'))
+    return str(value * value)
 
 @app.route('/namextimes/<int:x>/<name>')
 def lotsofnames(x, name):
@@ -56,6 +55,23 @@ def lotsofnames(x, name):
 def backwardname(name):
     name = name[::-1]
     return name
+
+#this is how post requests work
+@app.route('/posttest')
+def posting():
+    user = request.args.get('username')
+    password = request.args.get('password')
+    return 'username:' + str(user) + 'password:' + str(password)
+
+@app.route('/firstpart', methods=['POST'])
+def usernameandpassword():
+    return """
+    <form method=['POST'] action='/posttest'>
+        whats your name? <input type='text' name='username'>
+        whats your password<input type='text' name='password'>
+        <input type="submit" value="Submit" >
+    </form>
+    """
 
 if __name__ == '__main__':
     app.run(debug=True)
