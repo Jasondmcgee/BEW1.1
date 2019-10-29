@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fortune</title>
+</head>
+<body>
+    <p>come have your fortune read!</p>
+    <form action="/nextquestion" method="GET">
+        What is your name?: <input type="text" name="name">
+        <br>
+        <br>
+        How many roomates do you have? <input type="text" name="roomates">
+        <br>
+        <br>
+        prefered amount of icecream to consume at once:
+        <select name="icecream">
+            <option value="One scoup"> one scoup</option>
+            <option value="Small cup ">small cup</option>
+            <option value="One pint">one pint</option>
+            <option value="One Gallon">wayyyyy to much</option>
+        </select>
+        <br>
+        <br>
+        check your favorite spice girls!
+        <br>
+        <input type="checkbox" name="baby" value="1">baby spice<br>
+        <input type="checkbox" name="scary" value="2">scary spice<br>
+        <input type="checkbox" name="sporty" value="1"> sporty spice<br>
+        <input type="checkbox" name="ginger" value="0"> ginger spice<br>
+        <input type="checkbox" name="posh" value="1"> posh spice<br>
+        <br>
+        <input type="submit" value="Submit" >
+    </form>
+</body>
+</html>
