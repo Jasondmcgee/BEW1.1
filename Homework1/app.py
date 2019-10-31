@@ -29,7 +29,7 @@ def nextquestion():
             spicevalue = spicevalue + int(value)
     
     if (spicevalue >= 3 and c == '2'):
-        return render_template('spicyfuture.html', a=a, c=c)
+        return render_template('spicyfuture.html', a=a, c=c, test='test.js')
     if (spicevalue <= 3 and c == '2'):
         return render_template('nospiceonlycream.html', a=a, c=c)
     if (spicevalue <=3 and c == '1'):
@@ -56,22 +56,64 @@ def backwardname(name):
     name = name[::-1]
     return name
 
-#this is how post requests work
-@app.route('/posttest')
-def posting():
-    user = request.args.get('username')
-    password = request.args.get('password')
-    return 'username:' + str(user) + 'password:' + str(password)
-
-@app.route('/firstpart', methods=['POST'])
-def usernameandpassword():
+@app.route('/weather', methods=['GET','POST'])
+def sunnyornot():
     return """
-    <form method=['POST'] action='/posttest'>
-        whats your name? <input type='text' name='username'>
-        whats your password<input type='text' name='password'>
+    <form method=["POST"] action="/weather_request">
+        <select name="weather">
+            <option value="sunny">Sunny</option>
+            <option value="sad">not sunny</option>
+        </select>
         <input type="submit" value="Submit" >
     </form>
     """
+@app.route('/weather_request')
+def weather_report():
+    report = request.args.get('weather')
+    return render_template('weather.html', report=report)
+
+@app.route('/item_details')
+def details():
+    """
+    takes the url of the item and creates a page with the details
+    """
+
+#this is how post requests work
+@app.route('/posttest')
+def posting():
+    return """
+    <form action='/login' method='POST'>
+    Username: <input type='text' name='username'>
+    <br>
+    Password: <input type='password' name='password'>
+    <br>
+    <input type='submit'>
+    </form> """
+
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    return username + password
+
+#docstring practice
+def sum_2_numbers(x, y):
+    """
+    this function adds to numbers together
+
+    x (int): first operand
+    y (int): second operand
+    """
+    return x + y
+
+def sum_of_list(list):
+    """
+    takes a list and sums all the numbers
+
+    list(list): only operand
+    """
+    return sum(list)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
